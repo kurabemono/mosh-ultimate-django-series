@@ -8,8 +8,8 @@
         
         {% endif %}
 
-        {% for product in products %}
-        <li>{{ product }}</li>
+        {% for order in orders %}
+        <li>{{ order.id }} - {{ order.customer.first_name }}</li>
         {% endfor %}
     </body>
 </html>

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.db.models import Q, F
-from store.models import Product
+from store.models import Product, Order, OrderItem
 
 
 def say_hello(request):
-    # Products: inventory < 10 and price < 20
-    query_set = Product.objects.values('id', 'title', 'orderitem__product__id').filter(
-        orderitem__product__id__isnull=False).distinct().order_by('title')
+    # select_related(1)
+    # prefetch_related(n)
+    query_set = Order.objects.select_related(
+        'customer').prefetch_related('orderitem_set__product').order_by('-placed_at')[:5]
 
-    return render(request, 'hello.html', {'name': 'Mosh', 'products': list(query_set)})
+    return render(request, 'hello.html', {'name': 'Mosh', 'orders': list(query_set)})
