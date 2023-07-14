@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from django.contrib.contenttypes.models import ContentType
-from store.models import Product
+from store.models import Collection, Product
 from tags.models import TaggedItem
 
 
 def say_hello(request):
-    query_set = TaggedItem.objects.get_tags_for(Product, 1)
+    collection = Collection()
+    collection.title = 'Video Games'
+    collection.featured_product = Product(pk=1)
+    collection.save()
 
-    return render(request, 'hello.html', {'name': 'Mosh', 'result': list(query_set)})
+    # alternate
+    # collection = Collection.objects.create(title='a', featured_product_id=1)
+
+    return render(request, 'hello.html', {'name': 'Mosh'})
