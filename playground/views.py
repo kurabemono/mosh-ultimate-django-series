@@ -5,10 +5,9 @@ from tags.models import TaggedItem
 
 
 def say_hello(request):
-    # collection = Collection.objects.get(pk=11)
-    # collection.featured_product = None
-    # collection.save()
+    collection = Collection(pk=11)
+    collection.delete()
 
-    Collection.objects.filter(pk=11).update(featured_product=None)
+    Collection.objects.filter(pk__gt=5).delete()
 
     return render(request, 'hello.html', {'name': 'Mosh'})
