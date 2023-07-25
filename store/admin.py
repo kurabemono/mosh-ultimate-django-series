@@ -103,3 +103,14 @@ class CollectionAdmin(admin.ModelAdmin):
         return super().get_queryset(request).annotate(
             products_count=Count('product')
         )
+
+
+class CartItemInline(admin.StackedInline):
+    autocomplete_fields = ['product']
+    model = models.CartItem
+
+
+@admin.register(models.Cart)
+class CartAdmin(admin.ModelAdmin):
+    inlines = [CartItemInline]
+    list_display = ['id', 'created_at']
