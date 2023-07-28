@@ -55,3 +55,8 @@ class TestRetrieveCollection:
             'title': collection.title,
             'products_count': 0
         }
+
+    def test_if_collection_does_not_exist_returns_404(self, api_client):
+        response = api_client.get('/store/collections/1/')
+
+        assert response.status_code == status.HTTP_404_NOT_FOUND
