@@ -170,3 +170,9 @@ DJOSER = {
         'current_user': 'core.serializers.UserSerializer',
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ADMINS = [
+    ('Mosh', 'admin@moshbuy.com')
+]
