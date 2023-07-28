@@ -176,3 +176,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ADMINS = [
     ('Mosh', 'admin@moshbuy.com')
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
