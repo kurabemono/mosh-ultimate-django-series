@@ -166,6 +166,7 @@ cython_debug/
 
 # static media
 media/
+static/
 
 # celery
 celerybeat*
